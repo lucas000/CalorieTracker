@@ -9,7 +9,7 @@ import com.plcoding.tracker_domain.model.MealType
 import com.plcoding.tracker_domain.model.TrackedFood
 import kotlin.math.roundToInt
 
-class CalculateMealNutrients(
+class CalculateMealNutrientsUseCase(
     private val preferences: Preferences
 ) {
 

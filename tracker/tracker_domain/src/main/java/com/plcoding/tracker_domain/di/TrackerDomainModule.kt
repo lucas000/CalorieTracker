@@ -2,7 +2,7 @@ package com.plcoding.tracker_domain.di
 
 import com.plcoding.core.domain.preferences.Preferences
 import com.plcoding.tracker_domain.repository.TrackerRepository
-import com.plcoding.tracker_domain.use_case.CalculateMealNutrients
+import com.plcoding.tracker_domain.use_case.CalculateMealNutrientsUseCase
 import com.plcoding.tracker_domain.use_case.DeleteTrackedFoodUseCase
 import com.plcoding.tracker_domain.use_case.GetFoodsForDataUseCase
 import com.plcoding.tracker_domain.use_case.SearchFoodUseCase
@@ -29,7 +29,7 @@ object TrackerDomainModule {
             searchFoodUseCase = SearchFoodUseCase(repository),
             getFoodsForDataUseCase = GetFoodsForDataUseCase(repository),
             deleteTrackedFoodUseCase = DeleteTrackedFoodUseCase(repository),
-            calculateMealNutrients = CalculateMealNutrients(preferences)
+            calculateMealNutrientsUseCase = CalculateMealNutrientsUseCase(preferences)
         )
     }
 }
