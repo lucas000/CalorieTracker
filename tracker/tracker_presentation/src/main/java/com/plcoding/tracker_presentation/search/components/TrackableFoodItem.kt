@@ -170,7 +170,7 @@ fun TrackableFoodItem(
                         modifier = Modifier
                             .border(
                                 shape = RoundedCornerShape(5.dp),
-                                width = 5.dp,
+                                width = 0.5.dp,
                                 color = MaterialTheme.colors.onSurface
                             )
                             .alignBy(LastBaseline)

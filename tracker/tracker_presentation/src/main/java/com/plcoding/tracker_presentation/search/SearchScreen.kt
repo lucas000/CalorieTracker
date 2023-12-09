@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.annotation.ExperimentalCoilApi
 import com.plcoding.core.util.UiEvent
 import com.plcoding.core_ui.LocalSpacing
 import com.plcoding.tracker_domain.model.MealType
@@ -31,7 +32,8 @@ import com.plcoding.tracker_presentation.search.components.SearchTextField
 import com.plcoding.tracker_presentation.search.components.TrackableFoodItem
 import java.time.LocalDate
 
-@OptIn(ExperimentalComposeUiApi::class)
+@ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @Composable
 fun SearchScreen(
     scaffoldState: ScaffoldState,

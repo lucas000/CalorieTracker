@@ -71,9 +71,9 @@ class DefaultPreferences(
         val genderString = sharedPreferences.getString(Preferences.KEY_GENDER, null)
         val activityLevel = sharedPreferences.getString(Preferences.KEY_ACTIVITY_LEVEL, null)
         val goalType = sharedPreferences.getString(Preferences.KEY_GOAL_TYPE, null)
-        val carbRatio = sharedPreferences.getFloat(Preferences.KEY_GOAL_TYPE, -1f)
-        val proteinRatio = sharedPreferences.getFloat(Preferences.KEY_GOAL_TYPE, -1f)
-        val fatRatio = sharedPreferences.getFloat(Preferences.KEY_GOAL_TYPE, -1f)
+        val carbRatio = sharedPreferences.getFloat(Preferences.KEY_CARB_RATIO, -1f)
+        val proteinRatio = sharedPreferences.getFloat(Preferences.KEY_PROTEIN_RATIO, -1f)
+        val fatRatio = sharedPreferences.getFloat(Preferences.KEY_FAT_RATIO, -1f)
 
         return UserInfo(
             gender = Gender.fromString(genderString?: "male"),
