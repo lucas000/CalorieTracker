@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -42,29 +43,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val shouldShowOnboarding = preferences.loadShouldShowOnboarding()
-
         setContent {
             CaloryTrackerTheme {
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    scaffoldState = scaffoldState,
+                    scaffoldState = scaffoldState
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = if (shouldShowOnboarding) {
+                        startDestination = if(shouldShowOnboarding) {
                             Route.WELCOME
                         } else Route.TRACKER_OVERVIEW
                     ) {
                         composable(Route.WELCOME) {
                             WelcomeScreen(onNextClick = {
                                 navController.navigate(Route.GENDER)
-                            })
-                        }
-                        composable(Route.GENDER) {
-                            GenderScreen(onNextClick = {
-                                navController.navigate(Route.AGE)
                             })
                         }
                         composable(Route.AGE) {
@@ -74,6 +69,11 @@ class MainActivity : ComponentActivity() {
                                     navController.navigate(Route.HEIGHT)
                                 }
                             )
+                        }
+                        composable(Route.GENDER) {
+                            GenderScreen(onNextClick = {
+                                navController.navigate(Route.AGE)
+                            })
                         }
                         composable(Route.HEIGHT) {
                             HeightScreen(
@@ -91,20 +91,6 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         }
-                        composable(Route.ACTIVITY) {
-                            ActivityScreen(
-                                onNextClick = {
-                                    navController.navigate(Route.GOAL)
-                                }
-                            )
-                        }
-                        composable(Route.GOAL) {
-                            GoalScreen(
-                                onNextClick = {
-                                    navController.navigate(Route.NUTRIENT_GOAL)
-                                }
-                            )
-                        }
                         composable(Route.NUTRIENT_GOAL) {
                             NutrientGoalScreen(
                                 scaffoldState = scaffoldState,
@@ -113,14 +99,25 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         }
+                        composable(Route.ACTIVITY) {
+                            ActivityScreen(onNextClick = {
+                                navController.navigate(Route.GOAL)
+                            })
+                        }
+                        composable(Route.GOAL) {
+                            GoalScreen(onNextClick = {
+                                navController.navigate(Route.NUTRIENT_GOAL)
+                            })
+                        }
+
                         composable(Route.TRACKER_OVERVIEW) {
                             TrackerOverviewScreen(
                                 onNavigateToSearch = { mealName, day, month, year ->
                                     navController.navigate(
                                         Route.SEARCH + "/$mealName" +
-                                        "/$day" +
-                                        "/$month" +
-                                        "/$year"
+                                                "/$day" +
+                                                "/$month" +
+                                                "/$year"
                                     )
                                 }
                             )

@@ -1,13 +1,14 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    kotlin("android")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.plcoding.calorytracker"
     compileSdk = ProjectConfig.compileSdk
+
+    namespace = "com.plcoding.calorytracker"
 
     defaultConfig {
         applicationId = ProjectConfig.appId
@@ -16,16 +17,20 @@ android {
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.plcoding.calorytracker.HiltTestRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
-        named("release") {
+        getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    buildFeatures {
+        compose = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_18
@@ -34,21 +39,20 @@ android {
     kotlinOptions {
         jvmTarget = "18"
     }
-    buildFeatures {
-        compose = true
-    }
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeCompilerVersion
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+    packagingOptions {
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+        exclude("**/attach_hotspot_windows.dll")
+        exclude("META-INF/licenses/ASM")
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
     }
 }
 
 dependencies {
-
     implementation(Compose.compiler)
     implementation(Compose.ui)
     implementation(Compose.uiToolingPreview)
@@ -106,4 +110,5 @@ dependencies {
     androidTestImplementation(Testing.hiltTesting)
     kaptAndroidTest(DaggerHilt.hiltCompiler)
     androidTestImplementation(Testing.testRunner)
+    androidTestImplementation(Testing.testCore)
 }
